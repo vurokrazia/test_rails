@@ -11,11 +11,9 @@
 #  updated_at :datetime         not null
 #
 
-FactoryBot.define do
-  factory :assistant do
-    name { "MyString" }
-    group { "MyString" }
-    address { "MyString" }
-    phone { "MyString" }
-  end
+class Assistant < ApplicationRecord
+  validates :name, presence: true
+  validates :group, presence: true
+  validates :address, presence: true
+  validates :phone, presence: true
 end
