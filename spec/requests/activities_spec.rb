@@ -13,9 +13,9 @@ RSpec.describe "Activities", type: :request do
     end
   end
   describe "with data in the DB" do
-    let! (:activities) { create_list(:activity, 10)}
-    it "should return all the published posts" do 
-      get 'v1/activities'
+    let!(:activities) { create_list(:activity, 10)}
+    before { get "v1/activities" }
+    it "should return all the published activities" do 
       payload = JSON.parse(response.body)
       expect(payload.size).to eq(activities.size)
       expect(response).to have_http_status(200)
@@ -73,18 +73,6 @@ RSpec.describe "Activities", type: :request do
       context "response" do
         subject { response }
         it { is_expected.to have_http_status(:unprocessable_entity) }
-      end  
-    end
-  end
-  describe "DESTROY activities" do
-    context "Activity destroy successfully" do
-      before { destroy "v1/activities/#{activity.id}"}
-      context "payload" do
-        subject { payload_crud }
-      end  
-      context "response" do
-        subject { response }
-        it { is_expected.to have_http_status(:ok) }
       end  
     end
   end

@@ -15,5 +15,5 @@ class Assistant < ApplicationRecord
   validates :name, presence: true
   validates :group, presence: true
   validates :address, presence: true
-  validates :phone, presence: true
+  validates :phone, presence: true, length: {minimum: 10}
 end

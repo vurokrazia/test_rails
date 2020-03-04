@@ -1,3 +1,3 @@
 class ActivitySerializer < ActiveModel::Serializer
-  attribute :id, :name, :description
+  attributes :id, :name, :description
 end

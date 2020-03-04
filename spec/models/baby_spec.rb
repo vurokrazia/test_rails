@@ -25,5 +25,8 @@ RSpec.describe Baby, type: :model do
       should validate_presence_of(:address)
       should validate_presence_of(:phone)
     end
+    it "validate minimum length" do
+      should validate_length_of(:phone).is_at_least(10)
+    end
   end
 end

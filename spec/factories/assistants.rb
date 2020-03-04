@@ -13,9 +13,9 @@
 
 FactoryBot.define do
   factory :assistant do
-    name { "MyString" }
-    group { "MyString" }
-    address { "MyString" }
-    phone { "MyString" }
+    name { Faker::Lorem.sentence }
+    group { Faker::Educator.course_name }
+    address { Faker::Address.street_address }
+    phone { Faker::PhoneNumber.phone_number_with_country_code }
   end
 end

@@ -15,11 +15,11 @@
 
 FactoryBot.define do
   factory :baby do
-    name { "MyString" }
-    birthday { "2020-03-03" }
-    mother_name { "MyString" }
-    father_name { "MyString" }
-    address { "MyString" }
-    phone { "MyString" }
+    name { Faker::Lorem.sentence }
+    birthday { Faker::Date.in_date_period   }
+    mother_name { Faker::Name.female_first_name } 
+    father_name { Faker::Name.male_first_name } 
+    address { Faker::Address.street_address }
+    phone { Faker::PhoneNumber.phone_number_with_country_code  }
   end
 end
