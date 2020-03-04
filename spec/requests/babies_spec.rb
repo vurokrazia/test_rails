@@ -51,32 +51,31 @@ RSpec.describe "Babies", type: :request do
         it { is_expected.to have_http_status(:unprocessable_entity) }
       end  
     end
-    describe "PUT babies" do
-      context "Baby updated successfully" do
-        before { put "v1/babies/#{baby.id}", params: update_params }
-        context "payload" do
-          subject { payload_crud }
-          it { is_expected.to include(:id, :name, :birthday, :mother_name, :father_name, :address, :phone ) }
-        end  
-        context "response" do
-          subject { response }
-          it { is_expected.to have_http_status(:ok) }
-        end  
-      end
-      context "Baby empty, can't updated" do
-        before { put "v1/babies/#{baby.id}", params: baby_params_empty }
-        context "payload" do
-          subject { payload_crud }
-          it { is_expected.to include(:error) }
-        end  
-        context "response" do
-          subject { response }
-          it { is_expected.to have_http_status(:unprocessable_entity) }
-        end  
-      end
+  end
+  describe "PUT babies" do
+    context "Baby updated successfully" do
+      before { put "v1/babies/#{baby.id}", params: update_params }
+      context "payload" do
+        subject { payload_crud }
+        it { is_expected.to include(:id, :name, :birthday, :mother_name, :father_name, :address, :phone ) }
+      end  
+      context "response" do
+        subject { response }
+        it { is_expected.to have_http_status(:ok) }
+      end  
+    end
+    context "Baby empty, can't updated" do
+      before { put "v1/babies/#{baby.id}", params: baby_params_empty }
+      context "payload" do
+        subject { payload_crud }
+        it { is_expected.to include(:error) }
+      end  
+      context "response" do
+        subject { response }
+        it { is_expected.to have_http_status(:unprocessable_entity) }
+      end  
     end
   end
-
   private
   def payload_crud
     JSON.parse(response.body).with_indifferent_access

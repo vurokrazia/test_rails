@@ -24,9 +24,6 @@ class Api::V1::BabiesController  < ApplicationController
     @baby.update!(update_params)
     render json: @baby, status: :ok
   end
-  def destroy
-
-  end
   private
   def create_params
     params.require(:baby).permit(:name, :description, :birthday, :mother_name, :father_name, :address, :phone)

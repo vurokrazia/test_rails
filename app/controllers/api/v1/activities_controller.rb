@@ -24,9 +24,6 @@ class Api::V1::ActivitiesController  < ApplicationController
     @activity.update!(update_params)
     render json: @activity, status: :ok
   end
-  def destroy
-    @activity.destroy
-  end
   private
   def create_params
     params.require(:activity).permit(:name, :description)
