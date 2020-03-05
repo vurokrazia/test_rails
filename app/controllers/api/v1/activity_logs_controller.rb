@@ -11,7 +11,7 @@ class Api::V1::ActivityLogsController  < ApplicationController
   end
   def index
     hash = ActivityLogsSearchService.find_hash(params)
-    @activity_logs = ActivityLog.all
+    @activity_logs = ActivityLog.paginate(:page => @page, :per_page => @limit)
     unless hash[:params].empty?
       @activity_logs = ActivityLogsSearchService.search(@activity_logs,hash)
     end

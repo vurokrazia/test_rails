@@ -10,7 +10,7 @@ class Api::V1::AssistantsController  < ApplicationController
     render json: {error: e.message}, status: :unprocessable_entity
   end
   def index
-    @assistants = Assistant.all
+    @assistants = Assistant.paginate(:page => @page, :per_page => @limit)
     render json: @assistants, status: :ok
   end
   def create

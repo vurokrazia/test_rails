@@ -10,7 +10,7 @@ class Api::V1::ActivitiesController  < ApplicationController
     render json: {error: e.message}, status: :unprocessable_entity
   end
   def index    
-    @activities = Activity.all
+    @activities = Activity.paginate(:page => @page, :per_page => @limit)
     render json: @activities, status: :ok
   end
   def create
