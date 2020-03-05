@@ -14,8 +14,8 @@ class Api::V1::BabiesController  < ApplicationController
     render json: @activity_logs, status: :ok
   end
   def index
-    @activities = Baby.all
-    render json: @activities, status: :ok
+    @babies = Baby.paginate(:page => @page, :per_page => @limit)
+    render json: @babies, status: :ok
   end
   def create
     @baby = Baby.create!(create_params)
