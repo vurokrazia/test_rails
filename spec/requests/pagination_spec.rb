@@ -5,6 +5,7 @@ RSpec.describe "Babies", type: :request do
   let(:page_1) { 1 }
   let(:page_2) { 2 }
   let(:page_3) { 3 }
+  
   describe "Pagination of babies" do 
     describe "GET v1/babies pagination first page" do
       before { get "v1/babies?page=#{page_1}&max_results=#{max_results}" }
