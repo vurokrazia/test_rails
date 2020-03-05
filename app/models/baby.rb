@@ -15,9 +15,10 @@
 
 class Baby < ApplicationRecord
   validates :name, presence: true
-  validates :birthday, presence: true, format: { with: /\A\d+-\d{2}-\d{2}\z/ }, allow_nil: false
+  validates :birthday, presence: true, format: { with: /\A\d+-\d{2}-\d{2}\z/ }
   validates :mother_name, presence: true
   validates :father_name, presence: true
   validates :address, presence: true
   validates :phone, presence: true, length: {minimum: 10}
+  has_many :activity_logs
 end

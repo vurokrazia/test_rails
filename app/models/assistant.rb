@@ -16,4 +16,5 @@ class Assistant < ApplicationRecord
   validates :group, presence: true
   validates :address, presence: true
   validates :phone, presence: true, length: {minimum: 10}
+  has_many :activity_logs
 end
