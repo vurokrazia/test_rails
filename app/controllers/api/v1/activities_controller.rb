@@ -9,7 +9,7 @@ class Api::V1::ActivitiesController  < ApplicationController
   rescue_from ActiveRecord::RecordInvalid do |e|
     render json: {error: e.message}, status: :unprocessable_entity
   end
-  def index
+  def index    
     @activities = Activity.all
     render json: @activities, status: :ok
   end

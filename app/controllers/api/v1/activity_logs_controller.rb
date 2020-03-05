@@ -10,7 +10,11 @@ class Api::V1::ActivityLogsController  < ApplicationController
     render json: {error: e.message}, status: :unprocessable_entity
   end
   def index
+    hash = ActivityLogsSearchService.find_hash(params)
     @activity_logs = ActivityLog.all
+    unless hash[:params].empty?
+      @activity_logs = ActivityLogsSearchService.search(@activity_logs,hash)
+    end
     render json: @activity_logs, status: :ok
   end
   def create

@@ -19,6 +19,57 @@ RSpec.describe "Activity logs", type: :request do
 			expect(response).to have_http_status(200)
     end
   end
+  describe "Search" do
+    let!(:search_assistant) { create(:assistant)}
+    let!(:search_activity) { create(:activity)}
+    let!(:search_baby) { create(:baby)}
+    let!(:activity_logs_list) { create_list(:activity_log, 10)}
+    let!(:search_baby_list) { create_list(:activity_log, 3, baby_id:search_baby.id)}
+    let!(:search_activity_list) { create_list(:activity_log, 5, activity_id:search_activity.id)}
+    let!(:search_assistant_list) { create_list(:activity_log, 10, assistant_id:search_assistant.id)}
+    let(:search_list) { create_list(:activity_log, 15, baby_id:search_baby.id, activity_id:search_activity.id, assistant_id:search_assistant.id)}
+    it "should filter activity logs for baby" do
+      get "/v1/activity_logs?baby_id=#{search_baby.id}"
+      payload = JSON.parse(response.body)
+      expect(payload).to_not be_empty
+      expect(payload.size).to eq(search_baby_list.size)
+      expect(payload.map {|p| p["id"]}.sort).to eq(search_baby_list.map(&:id).sort)
+      expect(response).to have_http_status(200)
+    end
+    it "should filter activity logs for activity" do
+      get "/v1/activity_logs?activity_id=#{search_activity.id}"
+      payload = JSON.parse(response.body)
+      expect(payload).to_not be_empty
+      expect(payload.size).to eq(search_activity_list.size)
+      expect(payload.map {|p| p["id"]}.sort).to eq(search_activity_list.map(&:id).sort)
+      expect(response).to have_http_status(200)
+    end
+    it "should filter activity logs for assistant" do
+      get "/v1/activity_logs?assistant_id=#{search_assistant.id}"
+      payload = JSON.parse(response.body)
+      expect(payload).to_not be_empty
+      expect(payload.size).to eq(search_assistant_list.size)
+      expect(payload.map {|p| p["id"]}.sort).to eq(search_assistant_list.map(&:id).sort)
+      expect(response).to have_http_status(200)
+    end
+    it "should all filters activity logs nothing rows" do
+      get "/v1/activity_logs?baby_id=#{search_baby.id}&activity_id=#{search_activity.id}&assistant_id=#{search_assistant.id}"
+      payload = JSON.parse(response.body)
+      expect(payload).to be_empty
+      expect(payload.size).to eq(0)
+      expect(response).to have_http_status(200)
+    end
+  end
+  describe "Search 15 rows" do
+    let!(:search_list) { create_list(:activity_log, 15, baby_id:search_baby.id, activity_id:search_activity.id, assistant_id:search_assistant.id)}
+    it "should all filters activity logs" do
+      get "/v1/activity_logs?baby_id=#{search_baby.id}&activity_id=#{search_activity.id}&assistant_id=#{search_assistant.id}"
+      payload = JSON.parse(response.body)
+      expect(payload).to be_empty
+      expect(payload.size).to eq(search_list.size)
+      expect(response).to have_http_status(200)
+    end
+  end
   describe "with data in the DB" do
     let!(:activity_logs) { create_list(:activity_log, 10)}
     before { get "v1/activity_logs" }
