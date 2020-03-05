@@ -59,15 +59,15 @@ RSpec.describe "Activity logs", type: :request do
       expect(payload.size).to eq(0)
       expect(response).to have_http_status(200)
     end
-  end
-  describe "Search 15 rows" do
-    let!(:search_list) { create_list(:activity_log, 15, baby_id:search_baby.id, activity_id:search_activity.id, assistant_id:search_assistant.id)}
-    it "should all filters activity logs" do
-      get "/v1/activity_logs?baby_id=#{search_baby.id}&activity_id=#{search_activity.id}&assistant_id=#{search_assistant.id}"
-      payload = JSON.parse(response.body)
-      expect(payload).to be_empty
-      expect(payload.size).to eq(search_list.size)
-      expect(response).to have_http_status(200)
+    describe "Search 15 rows" do
+      let!(:search_list) { create_list(:activity_log, 15, baby_id:search_baby.id, activity_id:search_activity.id, assistant_id:search_assistant.id)}
+      it "should all filters activity logs" do
+        get "/v1/activity_logs?baby_id=#{search_baby.id}&activity_id=#{search_activity.id}&assistant_id=#{search_assistant.id}"
+        payload = JSON.parse(response.body)
+        expect(payload).to_not be_empty
+        expect(payload.size).to eq(search_list.size)
+        expect(response).to have_http_status(200)
+      end
     end
   end
   describe "with data in the DB" do
