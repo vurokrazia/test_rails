@@ -17,5 +17,27 @@
 require 'rails_helper'
 
 RSpec.describe ActivityLog, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  describe "validations" do
+    it "validate presence of of required fields" do
+      should validate_presence_of(:start_time)
+      should validate_presence_of(:stop_time)
+      should validate_presence_of(:duration)
+      should validate_presence_of(:comments)
+      should validate_presence_of(:baby_id)
+      should validate_presence_of(:assistant_id)
+      should validate_presence_of(:activity_id)
+    end
+    # it "raises an error if end time is lower than start time" do
+    #   #let(:activity_log) { create(:activity_log_error_datetimes )}
+    #   activity_log = FactoryBot.create(:activity_log_error_datetimes)
+    #   #city.errors(:base).should eq ["already exists"]
+    #   activity_log.valid?
+    #   activity_log.errors.full_messages.should include("The activities cannot beterminated at a time prior to the start date and time")
+    # end
+    # context "when an admin" do
+    #   subject { User.new(admin: true) }
+  
+    #   it { should validate_presence_of(:role) }
+    # end
+  end
 end

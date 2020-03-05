@@ -16,12 +16,21 @@
 
 FactoryBot.define do
   factory :activity_log do
-    baby { nil }
-    assistant { nil }
-    activity { nil }
-    start_time { "2020-03-04 00:00:15" }
-    stop_time { "2020-03-04 00:00:15" }
-    duration { 1 }
-    comments { "MyText" }
+    start_time { Faker::Date.forward(days: 1) }
+    stop_time { Faker::Date.forward(days: 5) }
+    duration { Faker::Number.between(from: 1, to: 10) }
+    comments { Faker::Lorem.sentence }
+    baby
+    assistant
+    activity
+  end
+  factory :activity_log_error_datetime, class: 'ActivityLog' do
+    start_time { Faker::Date.forward(days: 2) }
+    stop_time { Faker::Date.forward(days: 1) }
+    duration { Faker::Number.between(from: 1, to: 10) }
+    comments { Faker::Lorem.sentence }
+    baby
+    assistant
+    activity
   end
 end
