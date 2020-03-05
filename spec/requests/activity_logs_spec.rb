@@ -9,6 +9,7 @@ RSpec.describe "Activity logs", type: :request do
   let!(:update_params) { {"activity_log": {"start_time" => datetime_params,  "stop_time" => datetime_params_n.to_s(:db), "duration" => 2, "comments" => "Lorem"} } }
   let!(:activity_log_params_empty) { {"activity_log": { "baby_id" => nil,  "assistant_id" => nil, "activity_id" => nil,  "start_time" => nil, "stop_time" => nil , "duration" => nil, "comments" => nil} } }
   let!(:activity_log_error_datetime) { {"activity_log": { "baby_id" =>  baby.id, "assistant_id" =>  assistant.id, "activity_id" =>  activity.id, "start_time" =>  datetime_params_n.to_s(:db),  "stop_time" => datetime_params ,  "duration" =>  7, "comments" =>  "Ut sed enim eaque."}} }
+  let!(:activity_log_error_format_datetime) { {"activity_log": { "baby_id" =>  baby.id, "assistant_id" =>  assistant.id, "activity_id" =>  activity.id, "start_time" =>  "12:33 qw-23-2",  "stop_time" => "99 99 99 12-34-2020",  "duration" =>  7, "comments" =>  "Ut sed enim eaque."}} }
   let(:activity_log) { create(:activity_log )}
   describe "GET v1/activity_logs" do
     before { get 'v1/activity_logs' }
@@ -59,6 +60,17 @@ RSpec.describe "Activity logs", type: :request do
     end
     context "Activity_logs with datetime incorrect's, can't created" do
       before { post "v1/activity_logs", params: activity_log_error_datetime }
+      context "payload" do
+        subject { payload_crud }
+        it { is_expected.to include(:error) }
+      end  
+      context "response" do
+        subject { response }
+        it { is_expected.to have_http_status(:unprocessable_entity) }
+      end  
+    end
+    context "Activity_logs with datetime format incorrect's, can't created" do
+      before { post "v1/activity_logs", params: activity_log_error_format_datetime }
       context "payload" do
         subject { payload_crud }
         it { is_expected.to include(:error) }
