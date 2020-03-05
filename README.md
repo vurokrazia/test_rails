@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Prueba técnica Jesús Martínez -> jesus.alberto.vk@gmai.com
 
-Things you may want to cover:
+* Según el documento que recibi, por experiencia ya trabajando como dev android agrege versionamiento al api. (V1)
+* Desarrolle pruebas TDD
+  * Babies
+  * Activities
+  * Assinstant
+  * Activity logs
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Ejecutar pruebas
+* bundle exec rspec 
+* bundle exec rspec --format documentation 

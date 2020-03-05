@@ -23,17 +23,6 @@
 # Dump of table activities
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `activities`;
-
-CREATE TABLE `activities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
 
@@ -54,28 +43,6 @@ UNLOCK TABLES;
 
 # Dump of table activity_logs
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `activity_logs`;
-
-CREATE TABLE `activity_logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `baby_id` int(11) DEFAULT NULL,
-  `assistant_id` int(11) DEFAULT NULL,
-  `activity_id` int(11) DEFAULT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `stop_time` datetime DEFAULT NULL,
-  `duration` int(11) DEFAULT NULL,
-  `comments` text,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_activity_logs_on_baby_id` (`baby_id`),
-  KEY `index_activity_logs_on_assistant_id` (`assistant_id`),
-  KEY `index_activity_logs_on_activity_id` (`activity_id`),
-  CONSTRAINT `fk_rails_4ec10e59dc` FOREIGN KEY (`baby_id`) REFERENCES `babies` (`id`),
-  CONSTRAINT `fk_rails_9c0de324df` FOREIGN KEY (`activity_id`) REFERENCES `activities` (`id`),
-  CONSTRAINT `fk_rails_fb9550adbf` FOREIGN KEY (`assistant_id`) REFERENCES `assistants` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `activity_logs` WRITE;
 /*!40000 ALTER TABLE `activity_logs` DISABLE KEYS */;
@@ -190,19 +157,6 @@ UNLOCK TABLES;
 # Dump of table assistants
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `assistants`;
-
-CREATE TABLE `assistants` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `group` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 LOCK TABLES `assistants` WRITE;
 /*!40000 ALTER TABLE `assistants` DISABLE KEYS */;
 
@@ -225,21 +179,6 @@ UNLOCK TABLES;
 
 # Dump of table babies
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `babies`;
-
-CREATE TABLE `babies` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
-  `mother_name` varchar(255) DEFAULT NULL,
-  `father_name` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `babies` WRITE;
 /*!40000 ALTER TABLE `babies` DISABLE KEYS */;

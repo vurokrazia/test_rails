@@ -12,6 +12,16 @@ RSpec.describe "Babies", type: :request do
 			expect(response).to have_http_status(200)
     end
   end
+  describe "GET v1/babies/:id/activity_logs" do
+    let!(:baby_activity) { create(:baby)}
+    let!(:baby_activity_logs) { create_list(:activity_log,30,baby_id:baby_activity.id) }
+    before { get "v1/babies/#{baby_activity.id}/activity_logs" }
+    it "should return all activity logs of baby" do 
+      payload = JSON.parse(response.body)
+      expect(payload.size).to eq(baby_activity_logs.size)
+			expect(response).to have_http_status(200)
+    end
+  end
   describe "with data in the DB" do
     let!(:babies) { create_list(:baby, 10)}
     before { get "v1/babies" }

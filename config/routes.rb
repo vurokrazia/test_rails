@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :activities, only: [:index, :create, :update, :show]
       resources :babies, only: [:index, :create, :update, :show]
+      get "babies/:id/activity_logs", to: "babies#activity_logs" 
       resources :assistants, only: [:index, :create, :update, :show]
       resources :activity_logs, only: [:index, :create, :update, :show]
     end

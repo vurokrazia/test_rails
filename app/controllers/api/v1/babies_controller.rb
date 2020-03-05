@@ -1,5 +1,5 @@
 class Api::V1::BabiesController  < ApplicationController
-  before_action :set_baby, only: [:show, :update, :show, :destroy]
+  before_action :set_baby, only: [:show, :update, :show, :destroy, :activity_logs]
   rescue_from Exception do |e|
     render json: {error: e.message}, status: :internal_server_error
   end
@@ -8,6 +8,10 @@ class Api::V1::BabiesController  < ApplicationController
   end
   rescue_from ActiveRecord::RecordInvalid do |e|
     render json: {error: e.message}, status: :unprocessable_entity
+  end
+  def activity_logs
+    @activity_logs = @baby.activity_logs
+    render json: @activity_logs, status: :ok
   end
   def index
     @activities = Baby.all
