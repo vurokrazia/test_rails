@@ -6,6 +6,17 @@ RSpec.describe "Babies", type: :request do
   let(:baby) { create(:baby )}
   let!(:bearer)   { create(:token)}
   let!(:auth_headers) { {'Authorization' =>	 "Bearer #{bearer.token}"} }
+  describe "GET v1/babies without auth_token" do
+    before { get 'v1/babies'  }
+      context "payload" do
+        subject { payload_crud }
+        it { is_expected.to include(:error) }
+      end  
+      context "response" do
+        subject { response }
+        it { is_expected.to have_http_status(:unauthorized) }
+      end  
+  end
   describe "GET v1/babies" do
     before { get 'v1/babies', headers: auth_headers }
     it "should return ok" do 
