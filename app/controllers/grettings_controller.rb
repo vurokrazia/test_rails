@@ -1,4 +1,4 @@
-class Api::GrettingsController < ApplicationController
+class GrettingsController < ApplicationController
   def index
     render json: {message: t('hello')}, status: :ok
   end
