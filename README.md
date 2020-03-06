@@ -1,6 +1,6 @@
 # README
 
-# Prueba técnica Jesús Martínez -> jesus.alberto.vk@gmai.com
+# Prueba técnica Jesús Martínez -> jesus.alberto.vk@gmail.com
 
 * Según el documento que recibi, por experiencia ya trabajando como dev android agrege versionamiento al api. (V1)
 * Ocupe mysql/postgresql para dev y production respectivamente
