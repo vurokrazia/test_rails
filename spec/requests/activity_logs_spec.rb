@@ -91,7 +91,7 @@ RSpec.describe "Activity logs", type: :request do
       before { post "v1/activity_logs", params: create_params }
       context "payload" do
         subject { payload_crud }
-        it { is_expected.to include(:id, :baby_id,:assistant_id,:activity_id,:start_time,:stop_time,:duration,:comments) }
+        it { is_expected.to include(:id, :baby_id, :baby_name, :assistant_id, :assistant_name, :status, :activity_id, :activity_name, :start_time, :stop_time, :duration) }
       end  
       context "response" do
         subject { response }
@@ -137,7 +137,7 @@ RSpec.describe "Activity logs", type: :request do
       before { put "v1/activity_logs/#{activity_log.id}", params: update_params }
       context "payload" do
         subject { payload_crud }
-        it { is_expected.to include(:id, :baby_id,:assistant_id,:activity_id,:start_time,:stop_time,:duration,:comments) }
+        it { is_expected.to include(:id, :baby_id, :baby_name, :assistant_id, :assistant_name, :status, :activity_id, :activity_name, :start_time, :stop_time, :duration) }
       end  
       context "response" do
         subject { response }

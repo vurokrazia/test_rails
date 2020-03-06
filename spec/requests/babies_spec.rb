@@ -18,7 +18,7 @@ RSpec.describe "Babies", type: :request do
     before { get "v1/babies/#{baby_activity.id}/activity_logs" }
     it "should return all activity logs of baby" do 
       payload = JSON.parse(response.body)
-      expect(payload.size).to eq(baby_activity_logs.size)
+      expect(payload.size).to eq(15)
 			expect(response).to have_http_status(200)
     end
   end
