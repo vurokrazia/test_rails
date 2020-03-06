@@ -12,6 +12,7 @@
           %th=t('labels.phone')
           %th
           %th
+          %th
 
       %tbody
         - @babies.each do |baby|
@@ -24,5 +25,6 @@
             %td= baby.phone
             %td= link_to t("accions.show"), baby
             %td= link_to t("accions.edit"), edit_baby_path(baby)
+            %td= link_to t("resources.activity_logs"), "/babies/#{baby.id}/activity_logs" 
     .flickr_pagination
       = will_paginate @babies

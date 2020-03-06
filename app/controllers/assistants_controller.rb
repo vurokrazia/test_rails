@@ -26,7 +26,7 @@ class AssistantsController < ApplicationController
   # POST /assistants.json
   def create
     @assistant = Assistant.new(assistant_params)
-
+    @assistant.user = @current_user
     respond_to do |format|
       if @assistant.save
         format.html { redirect_to @assistant, notice: 'Assistant was successfully created.' }
