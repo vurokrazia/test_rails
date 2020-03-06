@@ -1,4 +1,6 @@
 class Api::V1::BabiesController  < ApplicationController
+  include Secured
+  before_action :authenticate_user!
   before_action :set_baby, only: [:show, :update, :show, :destroy, :activity_logs]
   rescue_from Exception do |e|
     render json: {error: e.message}, status: :internal_server_error
