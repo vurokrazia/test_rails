@@ -1,2 +1,47 @@
 es:
   hello: "Hola Mundo"
+  home: "Inicio"
+  status:
+    in_progress: "En progreso"
+    finished: "Terminada"
+  users:
+    login:
+      title:
+        sign_in: "Iniciar Sesión"
+        sign_up: "Registrarse"
+  resources:
+    baby: "Bebe"
+    babies: "Bebes"
+    assistant: "Asistente"
+    assistants: "Asistentes"
+    activity: "Actividad"
+    activities: "Actividades"
+    activity_log: "Log de actividad"
+    activity_logs: "Log de actividades"
+  accions:
+    index: "Ver listado"
+    new: "Registrar"
+    edit: "Editar"
+    show: "Ver"
+    listing: "Listado de %{name}" 
+    creating: "Crear %{name}" 
+    editing: "Editar %{name}"
+    back: "Atrás"
+    save: "Guardar"
+  labels:
+    baby: "Bebé"
+    assistant: "Asistente"
+    activity: "Actividad"
+    start_time: "Inicio"
+    status: "Estado"
+    duration: "Duración"
+    stop_time: "Fin"
+    comments: "Comentario"
+    name: "Nombre"
+    birthday: "Cumpleaños"
+    mother_name: "Madre"
+    father_name: "Padre"
+    address: "Dirección"
+    phone: "Telefóno"
+    group: "Grupo"
+    description: "Descripción"

@@ -1,0 +1,20 @@
+= form_for @assistant,builder: BootstrapFormBuilder do |f|
+  .row
+    = f.errors
+
+    = f.label t('labels.name')
+    = f.text_field :name
+  
+    = f.label t('labels.group')
+    = f.text_field :group
+  
+    = f.label t('labels.address')
+    = f.text_field :address
+  
+    = f.label t('labels.phone')
+    = f.text_field :phone
+    
+    .offset-8.col-2
+      = link_to t("accions.back"), assistants_path, class: "btn btn-secondary btn-block"
+    .col-2
+      = f.submit t("accions.save"), class:"btn-block "

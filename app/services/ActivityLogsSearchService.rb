@@ -13,10 +13,14 @@ class ActivityLogsSearchService
       hash[:params][:activity_id] = params[:activity_id]
       hash[:query] =  "#{hash[:query]}_activity_id_#{params[:activity_id]}_"
     end
+    if !params[:status].nil? && params[:status].present?
+      hash[:params][:status] = params[:status]
+      hash[:query] =  "#{hash[:query]}_status_#{params[:status]}_"
+    end
     return hash
   end
   def self.search(curr_logs,hash)
-    activity_logs_ids = Rails.cache.fetch("activity_logs_search/#{hash[:query]}", expires_in: 10.minutes) do
+    activity_logs_ids = Rails.cache.fetch("activity_logs_search/#{hash[:query]}", expires_in: 20.minutes) do
       curr_logs.where(hash[:params]).map(&:id)
     end
     curr_logs.where(id: activity_logs_ids)

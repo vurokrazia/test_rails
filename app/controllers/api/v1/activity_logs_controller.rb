@@ -11,7 +11,7 @@ class Api::V1::ActivityLogsController  < ApplicationController
   end
   def index
     hash = ActivityLogsSearchService.find_hash(params)
-    @activity_logs = ActivityLog.paginate(:page => @page, :per_page => @limit)
+    @activity_logs = ActivityLog.paginate(:page => @page, :per_page => @limit).includes(:baby, :activity, :assistant)
     unless hash[:params].empty?
       @activity_logs = ActivityLogsSearchService.search(@activity_logs,hash)
     end
@@ -30,10 +30,10 @@ class Api::V1::ActivityLogsController  < ApplicationController
   end
   private
   def create_params
-    params.require(:activity_log).permit(:baby_id,:assistant_id,:activity_id,:start_time,:stop_time,:duration,:comments)
+    params.require(:activity_log).permit(:baby_id,:assistant_id,:activity_id,:start_time,:stop_time,:duration,:comments,:status)
   end
   def update_params
-    params.require(:activity_log).permit(:start_time,:stop_time,:duration,:comments)
+    params.require(:activity_log).permit(:start_time,:stop_time,:duration,:comments,:status)
   end
   def set_activity_log
     @activity_log = ActivityLog.find(params[:id])

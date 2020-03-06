@@ -1,0 +1,15 @@
+.card
+  .card-body
+
+    %p
+      %b=t('labels.name')
+      = @activity.name
+    %p
+      %b=t('labels.description')
+      = @activity.description
+    .row
+      .offset-8
+      .col-2
+        = link_to t("accions.back"), activities_path, class: "btn btn-secondary btn-block"
+      .col-2
+        = link_to t("accions.edit"), edit_activity_path(@activity), class: "btn btn-primary btn-block"

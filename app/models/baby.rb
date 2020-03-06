@@ -21,4 +21,5 @@ class Baby < ApplicationRecord
   validates :address, presence: true
   validates :phone, presence: true, length: {minimum: 10}
   has_many :activity_logs
+  scope :order_name_asc, -> {order(name: :ASC)}
 end

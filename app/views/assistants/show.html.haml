@@ -1,0 +1,20 @@
+.card
+  .card-body
+    %p
+      %b=t('labels.name')
+      = @assistant.name
+    %p
+      %b=t('labels.group')
+      = @assistant.group
+    %p
+      %b=t('labels.address')
+      = @assistant.address
+    %p
+      %b=t('labels.phone')
+      = @assistant.phone
+    .row
+      .offset-8
+      .col-2
+        = link_to t("accions.back"), assistants_path, class: "btn btn-secondary btn-block"
+      .col-2
+        = link_to t("accions.edit"), edit_assistant_path(@assistant), class: "btn btn-primary btn-block"

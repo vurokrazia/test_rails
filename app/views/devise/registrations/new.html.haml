@@ -1,0 +1,18 @@
+.container
+  .row.my-5
+    .card
+      .card-body
+        %h1.my-5.text-center Registarse
+        = form_for(resource, as: resource_name, url: registration_path(resource_name),builder: BootstrapFormBuilder ) do |f|
+          .row
+            = f.errors
+            = f.label :email
+            = f.email_field :email, autofocus: true
+            = f.label :password
+            = f.password_field :password, autocomplete: "off"
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off"
+            .offset-md-9
+            .col-md-3
+              = render "devise/shared/links"
+              = f.submit "Sign up",class:"btn space-link"

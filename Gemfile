@@ -61,10 +61,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "active_model_serializers", "~> 0.10.10"
-gem "rack-cors", "~> 1.1"
-
 gem "will_paginate", "~> 3.3"
-
 gem "devise", "~> 4.7"
 gem "rails-i18n", "~> 6.0"
 gem "pry-rails", "~> 0.3.9"
+gem "haml-rails", "~> 2.0"
+gem "aasm", "~> 5.0"
+gem "time_difference", "~> 0.5.0"
+gem "rack-cors", "~> 1.1"

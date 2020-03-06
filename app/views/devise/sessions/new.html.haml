@@ -1,0 +1,17 @@
+.row.my-5
+  .card.my-5
+    .card-body
+      %h1.my-5.text-center=t('users.login.title.sign_in')
+      = form_for(resource, as: resource_name, url: session_path(resource_name),builder: BootstrapFormBuilder) do |f|
+        .row
+          = f.label :email
+          = f.email_field :email, autofocus: true
+          = f.label :password
+          = f.password_field :password, autocomplete: "off"
+          - if devise_mapping.rememberable?
+            = f.label :remember_me
+            = f.check_box :remember_me
+          .offset-md-7
+          .col-md-5
+            = render "devise/shared/links"
+            = f.submit "Log in"

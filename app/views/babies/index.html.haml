@@ -1,0 +1,28 @@
+.card
+  .card-body
+    %h1.card-title=t('accions.listing',{name:t('resources.babies')}) 
+    %table.table
+      %thead
+        %tr
+          %th=t('labels.name')
+          %th=t('labels.birthday')
+          %th=t('labels.mother_name')
+          %th=t('labels.father_name')
+          %th=t('labels.address')
+          %th=t('labels.phone')
+          %th
+          %th
+
+      %tbody
+        - @babies.each do |baby|
+          %tr
+            %td= baby.name
+            %td= baby.birthday
+            %td= baby.mother_name
+            %td= baby.father_name
+            %td= baby.address
+            %td= baby.phone
+            %td= link_to t("accions.show"), baby
+            %td= link_to t("accions.edit"), edit_baby_path(baby)
+    .flickr_pagination
+      = will_paginate @babies

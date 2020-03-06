@@ -1,0 +1,35 @@
+= form_for @activity_log, builder: BootstrapFormBuilder do |f|
+  .row
+    = f.errors
+  
+    = f.label t('labels.baby')
+    .col-md-8
+      .form-group
+        = select("activity_log", :baby_id, Baby.all.collect {|p| [ p.name, p.id ] }, {}, :style => "width:100%")
+
+    = f.label t('labels.assistant')
+    .col-md-8
+      .form-group
+        = select("activity_log", :assistant_id, Assistant.all.collect {|p| [ p.name, p.id ] }, {}, :style => "width:100%")
+
+    = f.label t('labels.activity')
+    .col-md-8
+      .form-group
+        = select("activity_log", :activity_id, Activity.all.collect {|p| [ p.name, p.id ] }, {}, :style => "width:100%")
+    
+    = f.label t('labels.status')
+    .col-md-8
+      .form-group
+        = f.select :status, ["in_progress", "finished"], { include_blank: 'Please choose' }
+    = f.label t('labels.start_time')
+    = f.datetime_select :start_time
+  
+    = f.label t('labels.stop_time')
+    = f.datetime_select :stop_time
+  
+    = f.label t('labels.comments')
+    = f.text_area :comments
+    .offset-8.col-2
+      = link_to t("accions.back"), activity_logs_path, class: "btn btn-secondary btn-block"
+    .col-2
+      = f.submit t("accions.save"), class:"btn-block "

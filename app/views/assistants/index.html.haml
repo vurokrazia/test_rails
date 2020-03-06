@@ -1,0 +1,25 @@
+.card
+  .card-body
+    %h1.card-title=t('accions.listing',{name:t('resources.assistants')}) 
+    
+    %table.table
+      %thead
+        %tr
+          %th=t('labels.name')
+          %th=t('labels.group')
+          %th=t('labels.address')
+          %th=t('labels.phone')
+          %th
+          %th
+
+      %tbody
+        - @assistants.each do |assistant|
+          %tr
+            %td= assistant.name
+            %td= assistant.group
+            %td= assistant.address
+            %td= assistant.phone
+            %td= link_to t("accions.show"), assistant
+            %td= link_to t("accions.edit"), edit_assistant_path(assistant)
+    .flickr_pagination
+      = will_paginate @assistants

@@ -12,12 +12,16 @@
 #  comments     :text(65535)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  status       :string(255)      default("in_progress")
 #
 
 class ActivityLog < ApplicationRecord
+  include AASM
+  before_save :calcule_automatic_minutes
   belongs_to :baby
   belongs_to :assistant
   belongs_to :activity
+  validates :status, presence: true, inclusion: {in: ["in_progress", "finished"]}
   validates :baby_id, presence: true
   validates :assistant_id, presence: true
   validates :activity_id, presence: true
@@ -26,10 +30,22 @@ class ActivityLog < ApplicationRecord
   validates :duration, presence: true
   validates :comments, presence: true
   validate :datetimes_correct
+  def calcule_automatic_minutes
+    if !self.start_time.nil? || !self.stop_time.nil?
+      self.duration = TimeDifference.between(self.start_time,self.stop_time).in_minutes
+    end
+  end
   def datetimes_correct
     return if self.stop_time.blank? || self.start_time.blank?
 		unless self.start_time <= self.stop_time
 			errors.add(:start_time,"The activities cannot beterminated at a time prior to the start date and time")
 		end
-	end
+  end
+  aasm(:status) do
+    state :in_progress, initial: true
+    state :finished
+    event :in_progress do
+      transitions from: :in_progress, to: :finished
+    end
+  end
 end

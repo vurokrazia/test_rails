@@ -12,6 +12,7 @@
 #  comments     :text(65535)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  status       :string(255)      default("in_progress")
 #
 
 require 'rails_helper'

@@ -1,0 +1,33 @@
+.card
+  .card-body
+    %p
+      %b=t('labels.baby')
+      = @activity_log.baby.name
+    %p
+      %b=t('labels.assistant')
+      = @activity_log.assistant.name
+    %p
+      %b=t('labels.activity')
+      = @activity_log.activity.name
+    %p
+      %b=t('labels.status')
+      = t("status.#{@activity_log.status}")
+    %p
+      %b=t('labels.start_time')
+      = @activity_log.start_time.strftime("%Y-%m-%d %H:%M")
+    %p
+      %b=t('labels.stop_time')
+      = @activity_log.stop_time.strftime("%Y-%m-%d %H:%M")
+    %p
+      %b=t('labels.duration')
+      = @activity_log.duration
+    %p
+      %b=t('labels.comments')
+      = @activity_log.comments
+
+    .row
+      .offset-8
+      .col-2
+        = link_to t("accions.back"), activity_logs_path, class: "btn btn-secondary btn-block"
+      .col-2
+        = link_to t("accions.edit"), edit_activity_log_path(@activity_log), class: "btn btn-primary btn-block"
