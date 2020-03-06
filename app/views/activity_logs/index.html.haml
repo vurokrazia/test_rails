@@ -4,38 +4,42 @@
     - if @search
       .row
         .col-xs-12.col-md-3
-          = select(:activity_log, :baby_id, @baby , {:prompt => t('resources.babies')}, { :style => 'width:100%' })
+          = select(:activity_log, :baby_id, @baby , {:prompt => t('resources.babies')}, { :id=> "baby_id", :style => 'width:100%' })
         .col-xs-12.col-md-3
-          = select(:activity_log, :assistant_id, @assistant , {:prompt => t('resources.assistants')}, { :style => 'width:100%' })
+          = select(:activity_log, :assistant_id, @assistant , {:prompt => t('resources.assistants')}, { :id=> "assistant_id", :style => 'width:100%' })
         .col-xs-12.col-md-3
-          = select(:activity_log, :activity_id, @activity , {:prompt => t('resources.activities')}, { :style => 'width:100%' })
+          = select(:activity_log, :activity_id, @activity , {:prompt => t('resources.activities')}, { :id=> "activity_id", :style => 'width:100%' })
         .col-xs-12.col-md-3
-          = select(:activity_log, :country, options_for_select([[t('status.in_progress'),"in_progress"], [t('status.finished'),"finished"]]), {:prompt => t('labels.status')}, { :style => 'width:100%' })
-          
+          = select(:activity_log, :status, options_for_select([[t('status.in_progress'),"in_progress"], [t('status.finished'),"finished"]]), {:prompt => t('labels.status')}, { :id=> "status", :style => 'width:100%' })
+        .col-xs-12.offset-md-8.col-md-2
+          %button.mt-2.btn.btn-block.btn-secondary{:id=>"reset"}=t("accions.reset")
+        .col-xs-12.col-md-2
+          %button.mt-2.btn.btn-block.btn-primary{:id=>"search"}=t("accions.search")
 .card
   .card-body
-    %table.table
-      %thead
-        %tr
-          %th=t('labels.baby')
-          %th=t('labels.assistant')
-          %th=t('labels.activity')
-          %th=t('labels.start_time')
-          %th=t('labels.status')
-          %th=t('labels.duration')
-          %th
-          %th
-
-      %tbody
-        - @activity_logs.each do |activity_log|
+    .table-responsive
+      %table.table
+        %thead
           %tr
-            %td= link_to activity_log.baby.name, activity_log.baby, target: '_blank'
-            %td= link_to activity_log.assistant.name, activity_log.assistant, target: '_blank'
-            %td= link_to activity_log.activity.name, activity_log.activity, target: '_blank'
-            %td= activity_log.start_time.strftime("%Y-%m-%d %H:%M")
-            %td= t("status.#{activity_log.status}")
-            %td= "#{activity_log.duration} min."
-            %td= link_to t("accions.edit"), edit_activity_log_path(activity_log)
-            %td= link_to t("accions.show"), activity_log, target: '_blank'
+            %th=t('labels.baby')
+            %th=t('labels.assistant')
+            %th=t('labels.activity')
+            %th=t('labels.start_time')
+            %th=t('labels.status')
+            %th=t('labels.duration')
+            %th
+            %th
+
+        %tbody#rows
+          - @activity_logs.each do |activity_log|
+            %tr{id: "p_#{activity_log[:id]}"}
+              %td= link_to activity_log.baby.name, activity_log.baby, target: '_blank'
+              %td= link_to activity_log.assistant.name, activity_log.assistant, target: '_blank'
+              %td= link_to activity_log.activity.name, activity_log.activity, target: '_blank'
+              %td= activity_log.start_time.strftime("%Y-%m-%d %H:%M")
+              %td= t("status.#{activity_log.status}")
+              %td= "#{activity_log.duration} min."
+              %td= link_to t("accions.edit"), edit_activity_log_path(activity_log)
+              %td= link_to t("accions.show"), activity_log, target: '_blank'
     .flickr_pagination
       = will_paginate @activity_logs

@@ -16,9 +16,17 @@
 #
 
 class ActivityLogSerializer < ActiveModel::Serializer
-  attributes :id, :baby_id,:assistant_id, :assistant_name, :activity_id,:start_time, :stop_time
+  attributes :id, :baby_id, :baby_name, :assistant_id, :assistant_name, :status, :activity_id, :activity_name, :start_time, :stop_time, :duration
+  def baby_name
+    baby = self.object.baby
+    baby.name
+  end
   def assistant_name
     assistant = self.object.assistant
     assistant.name
+  end
+  def activity_name
+    activity = self.object.activity
+    activity.name
   end
 end

@@ -19,6 +19,7 @@ es:
     activity_log: "Log de actividad"
     activity_logs: "Log de actividades"
   accions:
+    reset: "Restaurar"
     index: "Ver listado"
     new: "Registrar"
     edit: "Editar"
@@ -28,6 +29,7 @@ es:
     editing: "Editar %{name}"
     back: "Atrás"
     save: "Guardar"
+    search: "Buscar"
   labels:
     baby: "Bebé"
     assistant: "Asistente"

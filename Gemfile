@@ -69,3 +69,7 @@ gem "haml-rails", "~> 2.0"
 gem "aasm", "~> 5.0"
 gem "time_difference", "~> 0.5.0"
 gem "rack-cors", "~> 1.1"
+
+group :production  do
+  gem 'pg',"~> 1.2.2" 
+end

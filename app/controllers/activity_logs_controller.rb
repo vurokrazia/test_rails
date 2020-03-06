@@ -9,10 +9,11 @@ class ActivityLogsController < ApplicationController
     @activity_logs = ActivityLog.paginate(:page => @page, :per_page => @limit).includes(:baby, :activity, :assistant)
     unless hash[:params].empty?
       @activity_logs = ActivityLogsSearchService.search(@activity_logs,hash)
+      render json: @activity_logs, status: :ok
     else
-      @baby = Baby.order_name_asc.collect {|p| [ p.name, p.id ] }
-      @assistant = Assistant.order_name_asc.collect {|p| [ p.name, p.id ] }
-      @activity = Activity.order_name_asc.collect {|p| [ p.name, p.id ] }
+      @baby = Baby.order_name_asc.collect {|p| [ "#{p.id} #{p.name}", p.id ] }
+      @assistant = Assistant.order_name_asc.collect {|p| [ "#{p.id} #{p.name}", p.id ] }
+      @activity = Activity.order_name_asc.collect {|p| [ "#{p.id} #{p.name}", p.id ] }
     end
     @search = true
   end
