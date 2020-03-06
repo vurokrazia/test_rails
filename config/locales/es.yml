@@ -50,3 +50,9 @@ es:
     sign_in: "Iniciar Sesión"
     sign_up: "Registrarse"
     logout: "Cerrar sesión"
+  credentials:
+    error: "Sus credenciales no son correctas"
+    not_params: "No se encontraron parametros esperados"
+    invalid: "Su email/password son incorrectos"
+    repit: "Ese correo ya esta registrado"
+    user_invalid: "Correo y/o contraseña incorrecta(s)"

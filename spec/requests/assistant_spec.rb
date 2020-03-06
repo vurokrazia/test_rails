@@ -1,7 +1,8 @@
 require "rails_helper"
 RSpec.describe "Assistant", type: :request do
-  let!(:create_params) { { "assistant": {"name" => "Test Name","group" => "Test Group", "address" => "Test Address","phone" => "2283098384" } }}
-  let!(:update_params) { { "assistant": {"name" => "Test Name UPDATED", "group" => "Test Group UPDATED", "address" => "Test Address UPDATED","phone" => "1283098381" } }}
+  let!(:user) { create(:user)}
+  let!(:create_params) { { "assistant": {"user_id"=>user.id, "name" => "Test Name","group" => "Test Group", "address" => "Test Address","phone" => "2283098384" } }}
+  let!(:update_params) { { "assistant": {"user_id"=>user.id, "name" => "Test Name UPDATED", "group" => "Test Group UPDATED", "address" => "Test Address UPDATED","phone" => "1283098381" } }}
   let!(:assistant_params_empty) { { "assistant": {"name" => nil, "group" => nil, "address" => nil,"phone" => nil } }}
   let(:assistant) { create(:assistant)}
   describe "GET v1/assistants" do

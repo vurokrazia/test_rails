@@ -9,9 +9,11 @@
 #  phone      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint
 #
 
 class Assistant < ApplicationRecord
+  belongs_to :user, optional: true
   validates :name, presence: true
   validates :group, presence: true
   validates :address, presence: true

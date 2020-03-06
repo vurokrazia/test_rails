@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get "grettings", to: "grettings#index"
       namespace :v1 do
         get "babies/:id/activity_logs", to: "babies#activity_logs" 
+        resources :sessions, only: [:create]
         resources :activities, only: [:index, :create, :update, :show]
         resources :babies, only: [:index, :create, :update, :show]
         resources :assistants, only: [:index, :create, :update, :show]

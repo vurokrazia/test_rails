@@ -26,10 +26,10 @@ class Api::V1::AssistantsController  < ApplicationController
   end
   private
   def create_params
-    params.require(:assistant).permit(:name, :group,  :address, :phone)
+    params.require(:assistant).permit(:name, :group,  :address, :phone, :user_id)
   end
   def update_params
-    params.require(:assistant).permit(:name, :group,  :address, :phone)
+    params.require(:assistant).permit(:name, :group,  :address, :phone, :user_id)
   end
   def set_assistant
     @assistant = Assistant.find(params[:id])

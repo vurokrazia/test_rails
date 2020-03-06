@@ -1,5 +1,5 @@
 require "rails_helper"
-RSpec.describe "Activities", type: :request do
+RSpec.describe "Grettings", type: :request do
   let!(:say_hello) { "Hello World" }
   let!(:say_hola) { "Hola Mundo" }
   describe "GET grettings default" do

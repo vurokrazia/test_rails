@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 Activity.create([
   {name:'Actividad de grupo',description:'A aliquet scelerisque per adipiscing proin id a condimentum scelerisque parturient a lobortis a eget condimentum venenatis parturient adipiscing velit dictumst.',created_at:'2017-04-04 05:03:58',updated_at:'2017-04-04 05:03:58'},
   {name:'Tomar alimentos',description:'Dis inceptos euismod pharetra nibh pulvinar ad non platea tristique imperdiet parturient vestibulum a nascetur lorem sem.Adipiscing id proin velit.',created_at:'2017-04-04 05:04:08',updated_at:'2017-04-04 05:04:08'},

@@ -15,9 +15,18 @@
 
 class User < ApplicationRecord
   include PermissionsConcern
-
+  has_one :assistant
+  has_many :tokens
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  validates :email, presence: true
+  validates :password, presence: true
+  def self.from_login(data)
+    User.where("email = ?", data[:email]).first
+  end
+  def self.find_password(data)
+    data[:password]
+  end
 end
