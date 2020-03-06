@@ -3,28 +3,32 @@
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      %li.nav-item=link_to t('home'),root_path,class:"nav-link"
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          = t('resources.babies')
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          =link_to t('accions.index'), babies_path,class:"dropdown-item"
-          =link_to t('accions.new'),new_baby_path,class:"dropdown-item"
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          = t('resources.assistants')
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          =link_to t('accions.index'), assistants_path,class:"dropdown-item"
-          =link_to t('accions.new'), new_assistant_path,class:"dropdown-item"
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          = t('resources.activities')
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          =link_to t('accions.index'), activities_path,class:"dropdown-item"
-          =link_to t('accions.new'),new_activity_path,class:"dropdown-item"
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          = t('resources.activity_logs')
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          =link_to t('accions.index'), activity_logs_path,class:"dropdown-item"
-          =link_to t('accions.new'),new_activity_log_path,class:"dropdown-item"
+      -unless user_signed_in?
+        %li.nav-item= link_to t("labels.sign_up"), new_user_session_path, class:"nav-link"
+      - else
+        %li.nav-item=link_to t('home'),root_path,class:"nav-link"
+        %li.nav-item=link_to t("labels.logout"),destroy_user_session_path, method: :delete, class:"nav-link" 
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = t('resources.babies')
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            =link_to t('accions.index'), babies_path,class:"dropdown-item"
+            =link_to t('accions.new'),new_baby_path,class:"dropdown-item"
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = t('resources.assistants')
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            =link_to t('accions.index'), assistants_path,class:"dropdown-item"
+            =link_to t('accions.new'), new_assistant_path,class:"dropdown-item"
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = t('resources.activities')
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            =link_to t('accions.index'), activities_path,class:"dropdown-item"
+            =link_to t('accions.new'),new_activity_path,class:"dropdown-item"
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = t('resources.activity_logs')
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            =link_to t('accions.index'), activity_logs_path,class:"dropdown-item"
+            =link_to t('accions.new'),new_activity_log_path,class:"dropdown-item"

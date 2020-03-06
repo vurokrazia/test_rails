@@ -47,3 +47,6 @@ es:
     phone: "Telefóno"
     group: "Grupo"
     description: "Descripción"
+    sign_in: "Iniciar Sesión"
+    sign_up: "Registrarse"
+    logout: "Cerrar sesión"
